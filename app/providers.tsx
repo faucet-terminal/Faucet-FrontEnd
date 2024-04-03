@@ -1,22 +1,22 @@
 "use client";
 
-import { ThemeProvider } from "@/components/theme/theme-provider";
-import { useEffect, useState } from "react";
+import * as React from "react";
+import { NextUIProvider } from "@nextui-org/system";
+import { useRouter } from 'next/navigation'
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ThemeProviderProps } from "next-themes/dist/types";
 
-export function Provider({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+export interface ProvidersProps {
+  children: React.ReactNode;
+  themeProps?: ThemeProviderProps;
+}
+
+export function Providers({ children, themeProps }: ProvidersProps) {
+  const router = useRouter();
 
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      {mounted && children}
-    </ThemeProvider>
+    <NextUIProvider navigate={router.push}>
+      <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+    </NextUIProvider>
   );
 }
