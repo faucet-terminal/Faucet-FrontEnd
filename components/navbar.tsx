@@ -12,13 +12,11 @@ import {
 import { FaFaucetDrip } from "react-icons/fa6";
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
-
-import { siteConfig } from "@/config/site";
-import clsx from "clsx";
 import { usePathname } from "next/navigation";
 
+import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-// import NavbarUser from "./NavbarUser";
+import NavbarUser from "./NavbarUser";
 
 export const Navbar = () => {
 	const pathname = usePathname()
@@ -37,7 +35,7 @@ export const Navbar = () => {
 							<Link
 								color={
 									pathname === item.href
-										? "primary"
+										? "success"
 										: "foreground"
 								}
 								href={item.href}
@@ -56,12 +54,12 @@ export const Navbar = () => {
 				<NavbarItem className="hidden sm:flex gap-2">
 					<ThemeSwitch />
 				</NavbarItem>
-				{/* <NavbarUser /> */}
+				<NavbarUser />
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
 				<ThemeSwitch />
-				{/* <NavbarUser /> */}
+				<NavbarUser />
 				<NavbarMenuToggle />
 			</NavbarContent>
 
@@ -71,11 +69,9 @@ export const Navbar = () => {
 						<NavbarMenuItem key={`${item}-${index}`}>
 							<Link
 								color={
-									index === 2
-										? "primary"
-										: index === siteConfig.navMenuItems.length - 1
-											? "danger"
-											: "foreground"
+									pathname === item.href
+										? "success"
+										: "foreground"
 								}
 								href={item.href}
 								size="lg"

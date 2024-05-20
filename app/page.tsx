@@ -1,12 +1,17 @@
+"use client"
+import { signIn } from "@/auth";
+import { Social } from "@/components/auth/social";
 import { title } from "@/components/primitives";
-import { Button } from "@nextui-org/button";
 
 export default function Home() {
+  const login = async () => {
+    await signIn('twitter')
+  }
   return (
-    <main className="flex min-h-full flex-col items-center justify-between p-24">
+    <section className="flex min-h-full flex-col items-center justify-between p-24">
       <div className={title({ color: "violet", size: "xl" })}>
         Hello Web3&nbsp;
       </div>
-    </main>
+    </section>
   )
 }
