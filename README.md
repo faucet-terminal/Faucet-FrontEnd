@@ -1,5 +1,5 @@
 This is a the frontend-app repo for the Faucet-ATM.  
- In the first version, we use [Next.js](https://nextjs.org/) as the fullstack framework and [shadcn-ui](https://ui.shadcn.com/) as our ui.
+ In the first version, we use [Next.js](https://nextjs.org/) as the fullstack framework and [nextui](https://nextui.org/) as our ui.
 
 ## Getting Started
 
