@@ -11,6 +11,10 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  pages: {
+    signIn: "/auth/login",
+    error: "/auth/error",
+  },
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -21,6 +25,7 @@ export const {
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
+    // todo Credentials
   ],
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },

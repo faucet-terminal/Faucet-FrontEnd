@@ -3,7 +3,7 @@
 import { useTransition } from "react";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
-import { RiTwitterXLine } from "react-icons/ri";
+import { RiGithubFill } from "react-icons/ri";
 import { useSearchParams } from "next/navigation";
 import { DEFAULT_LOGIN_REDIRECT } from "@/config/routes";
 import { Button } from "@nextui-org/button";
@@ -23,7 +23,7 @@ export const Social = () => {
       });
     })
   }
-  const loginTwitter = (provider: "twitter") => {
+  const loginGithub = (provider: "github") => {
     startTwitterTransition(async () => {
       await signIn(provider, {
         callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
@@ -45,9 +45,9 @@ export const Social = () => {
         className="w-full"
         variant="light"
         isLoading={isTwitterPending}
-        onClick={() => loginTwitter("twitter")}
+        onClick={() => loginGithub("github")}
       >
-        <RiTwitterXLine className="h-6 w-6" />
+        <RiGithubFill className="h-6 w-6" />
       </Button>
     </div>
   );
