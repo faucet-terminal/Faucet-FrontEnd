@@ -5,7 +5,7 @@ datasource db {
 }
 
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 enum UserRole {
@@ -14,16 +14,17 @@ enum UserRole {
 }
 
 model User {
-  id                    String                 @id @default(cuid())
-  name                  String?
-  email                 String?                @unique
-  emailVerified         DateTime?
-  image                 String?
-  password              String?
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime?              @updatedAt
-  role                  UserRole               @default(USER)
-  accounts              Account[]
+  id            String      @id @default(cuid())
+  name          String?
+  email         String?     @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime?   @updatedAt
+  role          UserRole    @default(USER)
+  accounts      Account[]
+  UserClaim     UserClaim[]
 }
 
 model Account {
@@ -61,4 +62,36 @@ model PasswordResetToken {
   expires DateTime
 
   @@unique([email, token])
+}
+
+model CryptoCurrency {
+  id             String      @id @default(cuid())
+  name           String
+  description    String?
+  logoUrl        String
+  network        String
+  balance        Float?
+  currencyCode   String
+  claimAmount    Float
+  // 领取频率（小时）
+  claimFrequency Int
+  balanceAlert   Float
+  userClaim      UserClaim[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime?   @updatedAt
+
+  @@unique([name, network])
+}
+
+model UserClaim {
+  id               String         @id @default(cuid())
+  userId           String
+  user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  claimedAt        DateTime
+  cryptoCurrencyId String
+  cryptoCurrency   CryptoCurrency @relation(fields: [cryptoCurrencyId], references: [id], onDelete: Cascade)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime?      @updatedAt
+
+  @@unique([userId, cryptoCurrencyId])
 }
