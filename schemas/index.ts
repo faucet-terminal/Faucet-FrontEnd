@@ -36,3 +36,15 @@ export const ResetSchema = z.object({
   }),
 });
 
+
+export const CryptoCurrencySchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  description: z.string().optional(),
+  logoUrl: z.string().url({ message: "Invalid URL format" }),
+  network: z.string().min(1, { message: "Network is required" }),
+  balance: z.number().optional(),
+  currencyCode: z.string().min(1, { message: "Currency Code is required" }),
+  claimAmount: z.number().positive({ message: "Claim Amount must be a positive number" }),
+  claimFrequency: z.number().int().positive({ message: "Claim Frequency must be a positive integer" }),
+  balanceAlert: z.number().positive({ message: "Balance Alert must be a positive number" }),
+});
