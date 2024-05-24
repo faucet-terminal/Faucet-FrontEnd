@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.1.0",
     "@hookform/resolvers": "^3.4.0",
+    "@nestjs/axios": "^3.0.2",
     "@nextui-org/button": "^2.0.27",
     "@nextui-org/card": "^2.0.28",
     "@nextui-org/chip": "^2.0.28",
@@ -29,6 +30,7 @@
     "@prisma/client": "^5.14.0",
     "@react-aria/ssr": "^3.8.0",
     "@react-aria/visually-hidden": "^3.8.6",
+    "axios": "^1.7.2",
     "clsx": "^2.1.0",
     "framer-motion": "^10.16.4",
     "next": "14.0.4",
