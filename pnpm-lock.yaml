@@ -98,6 +98,9 @@ dependencies:
   react-icons:
     specifier: ^5.0.1
     version: 5.0.1(react@18.2.0)
+  react-toastify:
+    specifier: ^10.0.5
+    version: 10.0.5(react-dom@18.2.0)(react@18.2.0)
   tailwind-merge:
     specifier: ^2.3.0
     version: 2.3.0
@@ -4268,6 +4271,17 @@ packages:
       use-latest: 1.2.1(@types/react@18.2.74)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /react-toastify@10.0.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-mNKt2jBXJg4O7pSdbNUfDdTsK9FIdikfsIE/yUCxbAEXl4HMyJaivrVFcn3Elvt5xvCQYhUZm+hqTIu1UXM3Pw==}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    dependencies:
+      clsx: 2.1.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react@18.2.0:

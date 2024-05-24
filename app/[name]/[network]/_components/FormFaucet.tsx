@@ -8,6 +8,7 @@ import { Link } from "@nextui-org/link";
 import { CryptoCurrency } from "@prisma/client";
 import { requestToken } from "@/actions/request-token";
 import { CheckIcon } from "@/components/icons";
+import { toast } from 'react-toastify';
 
 type FormFaucetProps = {
   cryptoCurrency: CryptoCurrency;
@@ -28,6 +29,10 @@ const FormFaucet: React.FC<FormFaucetProps> = ({ cryptoCurrency, name, network }
 
   const handleAction = () => startTransition(async () => {
     const res = await requestToken({ name, network, address })
+    if (!res.success) {
+      toast.error(res.message);
+      return
+    }
     setTransaction(res)
   })
 

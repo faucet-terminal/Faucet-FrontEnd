@@ -9,6 +9,8 @@ import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { auth } from "@/auth";
 import { Providers } from "./providers";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata: Metadata = {
   title: {
@@ -57,6 +59,8 @@ export default async function RootLayout({
             </div>
           </Providers>
         </SessionProvider>
+
+        <ToastContainer />
       </body>
     </html>
   );
