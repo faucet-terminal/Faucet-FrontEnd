@@ -29,8 +29,8 @@ export const requestToken = async (
     });
     return response.data
   } catch (error: any) {
-    console.log("🚀 ~ err:", error);
-    return { error: error.message };
+    // console.log("🚀 ~ err:", error.response.data);
+    return { ...error?.response?.data };
   }
 
 
