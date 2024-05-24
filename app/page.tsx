@@ -1,30 +1,49 @@
-import { addCryptoCurrency } from "@/actions/crypto-currency";
-import { title } from "@/components/primitives";
-import { Button } from "@nextui-org/button";
+import Link from "next/link";
+import { Image } from "@nextui-org/image";
+import { Card, CardFooter, CardHeader } from "@nextui-org/card";
 
-export default function Home() {
-  const handleAdd = async () => {
-    "use server"
-    const res = await addCryptoCurrency({
-      name: "Fuel",
-      description: 'Aotos Devnet',
-      currencyCode: "APT",
-      logoUrl: 'https://cdn.triangleplatform.com/img/aptos.png',
-      network: "testnet",
-      claimAmount: 1,
-      claimFrequency: 24,
-      balanceAlert: 10,
-    })
-    console.log('[ res ] >', res)
-  }
+import { getAllCryptoCurrency } from "@/actions/crypto-currency";
+
+export default async function Home() {
+  const { data = [] } = await getAllCryptoCurrency()
   return (
-    <section className="flex min-h-full flex-col items-center justify-between p-24">
-      <div className={title({ color: "violet", size: "xl" })}>
-        Hello Web3&nbsp;
-      </div>
-      <form action={handleAdd}>
-        <Button type='submit'>添加APTOs</Button>
-      </form>
+    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {
+        data.map(item => {
+          return (
+            <Link key={item.id} href={`/${item.name}/${item.network}`}>
+              <Card
+                className="max-w-[400px]"
+                isHoverable
+              >
+                <CardHeader className="flex gap-3 align-top">
+                  <Image
+                    alt={item.name}
+                    height={40}
+                    width={40}
+                    radius="full"
+                    src={item.logoUrl}
+                  />
+                  <div className="flex flex-col">
+                    <p className="text-2xl font-bold">
+                      {item.name}
+                    </p>
+                    <p className="text-small text-default-500">
+                      {item.description}
+                    </p>
+                    <p className="text-small text-default-400">
+                      {item.network}
+                    </p>
+                  </div>
+                </CardHeader>
+                <CardFooter>
+                  <p className="text-md font-bold">Request</p>
+                </CardFooter>
+              </Card>
+            </Link>
+          )
+        })
+      }
     </section>
   )
 }
