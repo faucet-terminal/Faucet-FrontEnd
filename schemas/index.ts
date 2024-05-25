@@ -1,6 +1,5 @@
 import * as z from "zod";
 
-
 export const LoginSchema = z.object({
   email: z.string().email({
     message: "Invalid email address",
@@ -17,7 +16,7 @@ export const RegisterSchema = z.object({
   password: z.string().min(6, {
     message: "Minimum 6 characters required",
   }),
-  confirm:  z.string()
+  confirm: z.string()
 })
   .refine((data) => data.password === data.confirm, {
     message: "Passwords don't match",
@@ -38,6 +37,7 @@ export const ResetSchema = z.object({
 
 
 export const CryptoCurrencySchema = z.object({
+  id: z.string(),
   name: z.string().min(1, { message: "Name is required" }),
   description: z.string().optional(),
   logoUrl: z.string().url({ message: "Invalid URL format" }),

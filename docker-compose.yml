@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: faucet_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/usr/lib/postgresql/data
+
+  prisma:
+    image: prismagraphql/prisma:1.34.10
+    restart: always
+    ports:
+      - "4466:4466"
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: postgresql
+            host: db
+            database: faucet_db
+            user: postgres
+            password: postgres
+            rawAccess: true
+            port: 5432
+            migrations: true
+volumes:
+  pgdata:
