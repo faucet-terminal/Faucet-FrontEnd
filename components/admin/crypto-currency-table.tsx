@@ -18,7 +18,8 @@ import React, { useEffect, useState, useTransition } from "react";
 import {
   addCryptoCurrency,
   deleteCryptoById,
-  getCryptoCurrency,
+  getCryptoCurrencyPage,
+  updateCryptoCurrency,
 } from "@/actions/crypto-currency";
 
 import CryptoCurrencyModal from "./crypto-currency-modal";
@@ -51,7 +52,7 @@ export default function App() {
 
   const fetchTableData = async (current: number) => {
     try {
-      const response = await getCryptoCurrency({
+      const response = await getCryptoCurrencyPage({
         size: pagination.size,
         current,
       });
@@ -96,6 +97,22 @@ export default function App() {
           })
           .catch(() => setError("Something went wrong"));
       });
+    } else if (selectedItem && operatorType === OperatorEnum["EDIT"]) {
+      startTransition(() => {
+        updateCryptoCurrency(values, selectedItem.id)
+          .then((res) => {
+            if (res.error) {
+              setError(res.error);
+            } else {
+              setSuccess(res.success ?? "");
+              onClose();
+              startTransition(() => {
+                fetchTableData(pagination.current); // Refresh table data
+              });
+            }
+          })
+          .catch(() => setError("Something went wrong"));
+      });
     } else {
       startTransition(() => {
         addCryptoCurrency(values)
@@ -117,14 +134,6 @@ export default function App() {
 
   return (
     <>
-      <Button
-        className="mb-5"
-        color="secondary"
-        variant="solid"
-        onPress={onOpen}
-      >
-        Add
-      </Button>
       <CryptoCurrencyModal
         isOpen={isOpen}
         onClose={onClose}
@@ -162,6 +171,14 @@ export default function App() {
           </Chip>
         )}
       </div>
+      <Button
+        className="mb-5"
+        color="secondary"
+        variant="solid"
+        onPress={onOpen}
+      >
+        Add
+      </Button>
       <Table
         aria-label="Example table with client side pagination"
         bottomContent={

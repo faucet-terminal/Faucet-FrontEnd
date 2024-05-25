@@ -9,6 +9,8 @@ import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { auth } from "@/auth";
 import { Providers } from "./providers";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata: Metadata = {
   title: {
@@ -40,7 +42,7 @@ export default async function RootLayout({
           <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
             <div className="relative flex flex-col h-full min-h-screen">
               <Navbar />
-              <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+              <main className="container mx-auto max-w-7xl pt-10 px-6 flex-grow">
                 {children}
               </main>
               <footer className="w-full flex items-center justify-center py-3">
@@ -57,6 +59,8 @@ export default async function RootLayout({
             </div>
           </Providers>
         </SessionProvider>
+
+        <ToastContainer />
       </body>
     </html>
   );
