@@ -11,7 +11,7 @@ import {
   ModalHeader,
 } from "@nextui-org/react";
 import { Controller, useForm } from "react-hook-form";
-import React, { useEffect, useTransition } from "react";
+import React, { useEffect } from "react";
 
 import { CryptoCurrencySchema } from "@/schemas";
 import { NotificationIcon } from "../icons";
@@ -50,7 +50,6 @@ const CryptoCurrencyModal = ({
   error,
   operatorType,
 }: Props) => {
-  const [isFormPending, startTransition] = useTransition();
   const { control, handleSubmit, reset } = useForm<
     z.infer<typeof CryptoCurrencySchema>
   >({
@@ -63,8 +62,10 @@ const CryptoCurrencyModal = ({
       getCryptoById(selectedItem.id).then((res: any) => {
         return reset(res?.data ?? DefaultValus);
       });
+    } else if (isOpen && operatorType === OperatorEnum["ADD"]) {
+      reset(DefaultValus);
     }
-  }, [isOpen, selectedItem, reset]);
+  }, [isOpen, selectedItem, reset, operatorType]);
 
   const getModalTitle = () => {
     switch (operatorType) {
@@ -98,17 +99,15 @@ const CryptoCurrencyModal = ({
       }}
     >
       <ModalContent>
-        <ModalHeader className="flex flex-col gap-1">
-          {getModalTitle()}
-        </ModalHeader>
-        {operatorType === OperatorEnum["DELETE"] ? (
-          <>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <ModalHeader className="flex flex-col gap-1">
+            {getModalTitle()}
+          </ModalHeader>
+          {operatorType === OperatorEnum["DELETE"] ? (
             <ModalBody>
               <p>Confirm deletion of this record?</p>
             </ModalBody>
-          </>
-        ) : (
-          <form onSubmit={handleSubmit(onSubmit)}>
+          ) : (
             <ModalBody>
               <div className="flex justify-center min-h-[30px]">
                 {error && (
@@ -333,20 +332,20 @@ const CryptoCurrencyModal = ({
                 }}
               />
             </ModalBody>
-          </form>
-        )}
-        <ModalFooter>
-          <Button color="default" variant="light" onPress={onClose}>
-            Close
-          </Button>
-          <Button
-            className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
-            type="submit"
-            isLoading={isPending}
-          >
-            Action
-          </Button>
-        </ModalFooter>
+          )}
+          <ModalFooter>
+            <Button color="default" variant="light" onPress={onClose}>
+              Close
+            </Button>
+            <Button
+              className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20"
+              type="submit"
+              isLoading={isPending}
+            >
+              Action
+            </Button>
+          </ModalFooter>
+        </form>
       </ModalContent>
     </Modal>
   );

@@ -80,7 +80,15 @@ export default function App() {
     onOpen();
   };
 
+  const handleClose = () => {
+    setSelectedItem(null);
+    setOperatorType(OperatorEnum["ADD"]);
+    onClose();
+  };
+
   const onSubmit = (values: z.infer<typeof CryptoCurrencySchema>) => {
+    console.log("🍷🍷", values, selectedItem);
+
     if (selectedItem && operatorType === OperatorEnum["DELETE"]) {
       startTransition(() => {
         deleteCryptoById(selectedItem?.id)
@@ -89,7 +97,7 @@ export default function App() {
               setError(res.error);
             } else {
               setSuccess(res.success ?? "");
-              onClose();
+              handleClose();
               startTransition(() => {
                 fetchTableData(pagination.current); // Refresh table data
               });
@@ -105,7 +113,7 @@ export default function App() {
               setError(res.error);
             } else {
               setSuccess(res.success ?? "");
-              onClose();
+              handleClose();
               startTransition(() => {
                 fetchTableData(pagination.current); // Refresh table data
               });
@@ -121,7 +129,7 @@ export default function App() {
               setError(res.error);
             } else {
               setSuccess(res.success ?? "");
-              onClose();
+              handleClose();
               startTransition(() => {
                 fetchTableData(pagination.current); // Refresh table data
               });
@@ -136,7 +144,7 @@ export default function App() {
     <>
       <CryptoCurrencyModal
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={handleClose}
         selectedItem={selectedItem}
         onSubmit={onSubmit}
         isPending={isPending}
