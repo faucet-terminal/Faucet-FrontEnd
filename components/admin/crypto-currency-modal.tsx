@@ -1,19 +1,19 @@
 import * as z from "zod";
 
+import { Controller, useForm } from "react-hook-form";
 import {
-  Button,
-  Chip,
-  Input,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
-} from "@nextui-org/react";
-import { Controller, useForm } from "react-hook-form";
+} from "@nextui-org/modal";
 import React, { useEffect } from "react";
 
+import { Button } from "@nextui-org/button";
+import { Chip } from "@nextui-org/chip";
 import { CryptoCurrencySchema } from "@/schemas";
+import { Input } from "@nextui-org/input";
 import { NotificationIcon } from "../icons";
 import { OperatorEnum } from "./crypto-currency-table";
 import { getCryptoById } from "@/actions/crypto-currency";

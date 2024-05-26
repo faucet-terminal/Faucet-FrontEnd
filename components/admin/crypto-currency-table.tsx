@@ -1,9 +1,8 @@
 "use client";
 
+import { DeleteIcon, EditIcon, NotificationIcon } from "../icons";
+import React, { useEffect, useState, useTransition } from "react";
 import {
-  Button,
-  Chip,
-  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -11,10 +10,7 @@ import {
   TableHeader,
   TableRow,
   getKeyValue,
-  useDisclosure,
-} from "@nextui-org/react";
-import { DeleteIcon, EditIcon, NotificationIcon } from "../icons";
-import React, { useEffect, useState, useTransition } from "react";
+} from "@nextui-org/table";
 import {
   addCryptoCurrency,
   deleteCryptoById,
@@ -22,8 +18,12 @@ import {
   updateCryptoCurrency,
 } from "@/actions/crypto-currency";
 
+import { Button } from "@nextui-org/button";
+import { Chip } from "@nextui-org/chip";
 import CryptoCurrencyModal from "./crypto-currency-modal";
 import { CryptoCurrencySchema } from "@/schemas";
+import { Pagination } from "@nextui-org/pagination";
+import { useDisclosure } from "@nextui-org/modal";
 import { z } from "zod";
 
 export enum OperatorEnum {
@@ -197,7 +197,7 @@ export default function App() {
               color="secondary"
               page={pagination.current}
               total={pagination.pages}
-              onChange={(page) =>
+              onChange={(page: number) =>
                 setPagination({ ...pagination, current: page })
               }
             />
