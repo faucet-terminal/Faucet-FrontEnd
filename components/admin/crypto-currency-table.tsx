@@ -24,7 +24,6 @@ import {
 
 import CryptoCurrencyModal from "./crypto-currency-modal";
 import { CryptoCurrencySchema } from "@/schemas";
-// import { users } from "./data";
 import { z } from "zod";
 
 export enum OperatorEnum {
