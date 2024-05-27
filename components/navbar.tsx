@@ -31,14 +31,16 @@ export const Navbar = () => {
         </NavbarBrand>
         <ul className="hidden md:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <Link
-                color={pathname === item.href ? "success" : "foreground"}
-                href={item.href}
-                size="lg"
-              >
-                {item.label}
-              </Link>
+            <NavbarItem key={item.href.slice(1)}>
+              <NextLink href={`${item.href}`}>
+                <Link
+                  color={pathname === item.href ? "success" : "foreground"}
+                  size="lg"
+                >
+                  {item.label}
+                </Link>
+              </NextLink>
+
             </NavbarItem>
           ))}
         </ul>

@@ -16,7 +16,7 @@ export const requestToken = async (
   const apiPath = `${prefix}/${lowerCaseName}/request`;
 
   // const fetchUrl = `http://127.0.0.1:${port}${apiPath}`
-  const fetchUrl = `http://172.104.46.243:${port}${apiPath}`; 
+  const fetchUrl = `http://150.158.30.101:${port}${apiPath}`; 
   
   try {
     const response = await axios.post(fetchUrl, {
