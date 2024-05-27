@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 
-import { createCryptoCurrency, findAllCryptoCurrency, findCryptoCurrency, getCryptoCurrencyById, getCryptoPage, updateCurrency } from "@/data/crypto-currency";
+import { createCryptoCurrency, deleteCryptoCurrency, findAllCryptoCurrency, findCryptoCurrency, getCryptoCurrencyById, getCryptoPage, updateCurrency } from "@/data/crypto-currency";
 
 import { CryptoCurrencySchema } from "@/schemas";
 
@@ -45,11 +45,11 @@ export const updateCryptoCurrency = async (values: z.infer<typeof CryptoCurrency
 export const getCryptoCurrencyPage = async (params: { size?: number, current?: number }) => {
   const data = await getCryptoPage(params)
   if (!data) {
-    return { error: 'get crypto currency error' }
+    return { error: 'get crypto currency page error' }
   }
   return {
     data,
-    success: 'get crypto currency success'
+    success: 'get crypto currency  page success'
   }
 }
 
@@ -75,7 +75,7 @@ export const getCryptoById = async (id: string) => {
  * @returns 
  */
 export const deleteCryptoById = async (id: string) => {
-  const data = await getCryptoCurrencyById(id)
+  const data = await deleteCryptoCurrency(id)
   if (!data) {
     return { error: 'delete crypto currency error' }
   }

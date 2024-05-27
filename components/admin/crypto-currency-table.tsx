@@ -1,9 +1,8 @@
 "use client";
 
+import { DeleteIcon, EditIcon, NotificationIcon } from "../icons";
+import React, { useEffect, useState, useTransition } from "react";
 import {
-  Button,
-  Chip,
-  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -11,10 +10,7 @@ import {
   TableHeader,
   TableRow,
   getKeyValue,
-  useDisclosure,
-} from "@nextui-org/react";
-import { DeleteIcon, EditIcon, NotificationIcon } from "../icons";
-import React, { useEffect, useState, useTransition } from "react";
+} from "@nextui-org/table";
 import {
   addCryptoCurrency,
   deleteCryptoById,
@@ -22,9 +18,12 @@ import {
   updateCryptoCurrency,
 } from "@/actions/crypto-currency";
 
+import { Button } from "@nextui-org/button";
+import { Chip } from "@nextui-org/chip";
 import CryptoCurrencyModal from "./crypto-currency-modal";
 import { CryptoCurrencySchema } from "@/schemas";
-// import { users } from "./data";
+import { Pagination } from "@nextui-org/pagination";
+import { useDisclosure } from "@nextui-org/modal";
 import { z } from "zod";
 
 export enum OperatorEnum {
@@ -80,7 +79,15 @@ export default function App() {
     onOpen();
   };
 
+  const handleClose = () => {
+    setSelectedItem(null);
+    setOperatorType(OperatorEnum["ADD"]);
+    onClose();
+  };
+
   const onSubmit = (values: z.infer<typeof CryptoCurrencySchema>) => {
+    console.log("🍷🍷", values, selectedItem);
+
     if (selectedItem && operatorType === OperatorEnum["DELETE"]) {
       startTransition(() => {
         deleteCryptoById(selectedItem?.id)
@@ -89,7 +96,7 @@ export default function App() {
               setError(res.error);
             } else {
               setSuccess(res.success ?? "");
-              onClose();
+              handleClose();
               startTransition(() => {
                 fetchTableData(pagination.current); // Refresh table data
               });
@@ -105,7 +112,7 @@ export default function App() {
               setError(res.error);
             } else {
               setSuccess(res.success ?? "");
-              onClose();
+              handleClose();
               startTransition(() => {
                 fetchTableData(pagination.current); // Refresh table data
               });
@@ -121,7 +128,7 @@ export default function App() {
               setError(res.error);
             } else {
               setSuccess(res.success ?? "");
-              onClose();
+              handleClose();
               startTransition(() => {
                 fetchTableData(pagination.current); // Refresh table data
               });
@@ -136,7 +143,7 @@ export default function App() {
     <>
       <CryptoCurrencyModal
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={handleClose}
         selectedItem={selectedItem}
         onSubmit={onSubmit}
         isPending={isPending}
@@ -190,7 +197,7 @@ export default function App() {
               color="secondary"
               page={pagination.current}
               total={pagination.pages}
-              onChange={(page) =>
+              onChange={(page: number) =>
                 setPagination({ ...pagination, current: page })
               }
             />
