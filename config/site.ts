@@ -12,6 +12,10 @@ export const siteConfig = {
 			label: "About",
 			href: "/about",
 		},
+		{
+			label: 'Contributors',
+			href: '/contributors'
+		}
 	],
 	navMenuItems: [
 		{
@@ -22,5 +26,9 @@ export const siteConfig = {
 			label: "About",
 			href: "/about",
 		},
+		{
+			label: 'Contributors',
+			href: '/contributors'
+		}
 	],
 };
