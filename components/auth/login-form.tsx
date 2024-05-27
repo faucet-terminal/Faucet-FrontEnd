@@ -37,7 +37,7 @@ export const LoginForm = () => {
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("")
-    startTransition(async () => {
+    startTransition(() => {
       login(values, callbackUrl)
         .then((data) => {
           if (data?.error) {
@@ -47,6 +47,8 @@ export const LoginForm = () => {
         .catch(() => setError("Something went wrong"));
     });
   };
+
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

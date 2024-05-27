@@ -17,17 +17,21 @@ export const Social = () => {
   const [isTwitterPending, startTwitterTransition] = useTransition()
 
   const loginGoogle = (provider: "google") => {
-    startGoogleTransition(async () => {
-      await signIn(provider, {
-        callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
-      });
+    startGoogleTransition(() => {
+      (async () => {
+        await signIn(provider, {
+          callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+        });
+      })()
     })
   }
   const loginGithub = (provider: "github") => {
-    startTwitterTransition(async () => {
-      await signIn(provider, {
-        callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
-      });
+    startTwitterTransition(() => {
+      (async () => {
+        await signIn(provider, {
+          callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+        });
+      })()
     })
   }
 

@@ -33,12 +33,7 @@ export const Navbar = () => {
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href.slice(1)}>
               <NextLink href={`${item.href}`}>
-                <Link
-                  color={pathname === item.href ? "success" : "foreground"}
-                  size="lg"
-                >
                   {item.label}
-                </Link>
               </NextLink>
 
             </NavbarItem>

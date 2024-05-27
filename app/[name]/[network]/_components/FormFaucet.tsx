@@ -27,20 +27,31 @@ const FormFaucet: React.FC<FormFaucetProps> = ({ cryptoCurrency, name, network }
   const [isPending, startTransition] = useTransition()
   const [transaction, setTransaction] = useState<Transaction>();
 
-  const handleAction = () => startTransition(async () => {
-    const res = await requestToken({ name, network, address })
-    if (!res.success) {
-      toast.error(res.message);
-      return
+  const handleAction = async () => {
+    try {
+      const res = await requestToken({ name, network, address });
+      if (!res.success) {
+        toast.error(res.message);
+      } else {
+        setTransaction(res);
+      }
+    } catch (error) {
+      toast.error("An error occurred while requesting the token.");
     }
-    setTransaction(res)
-  })
+  };
+
+  const onButtonClick = (event: any) => {
+    event.preventDefault(); // 防止表单提交刷新页面
+    startTransition(() => {
+      handleAction();
+    });
+  };
 
   return (
     <>
       <form
         className="grid gap-4 mt-4"
-        action={handleAction}
+        onSubmit={onButtonClick}
       >
         <Input
           value={address}

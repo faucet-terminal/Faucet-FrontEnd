@@ -27,20 +27,23 @@ export const NewVerificationForm = () => {
       setError("Missing token!");
       return;
     }
-    startTransition(async () => {
-      await new Promise((resolve) => setTimeout(() => {
-        resolve(true)
-      }, 1000))
-      newVerification(token)
-        .then(async (data) => {
-          setSuccess(data.success);
-          setError(data.error);
-          // TODO 验证完登录
-        })
-        .catch(() => {
-          setError("Something went wrong!");
-        })
+    startTransition(() => {
+      (async () => {
+        await new Promise((resolve) => setTimeout(() => {
+          resolve(true)
+        }, 1000))
+        newVerification(token)
+          .then(async (data) => {
+            setSuccess(data.success);
+            setError(data.error);
+            // TODO 验证完登录
+          })
+          .catch(() => {
+            setError("Something went wrong!");
+          })
+      })()
     })
+
   }, [token, success, error]);
 
   useEffect(() => {
