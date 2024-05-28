@@ -1,30 +1,35 @@
-"use client"
+"use client";
 
 import { useState, useTransition } from "react";
-import { Input } from "@nextui-org/input";
+
 import { Button } from "@nextui-org/button";
-import { Chip } from "@nextui-org/chip";
-import { Link } from "@nextui-org/link";
-import { CryptoCurrency } from "@prisma/client";
-import { requestToken } from "@/actions/request-token";
 import { CheckIcon } from "@/components/icons";
-import { toast } from 'react-toastify';
+import { Chip } from "@nextui-org/chip";
+import { CryptoCurrency } from "@prisma/client";
+import { Input } from "@nextui-org/input";
+import { Link } from "@nextui-org/link";
+import { requestToken } from "@/actions/request-token";
+import { toast } from "react-toastify";
 
 type FormFaucetProps = {
   cryptoCurrency: CryptoCurrency;
   name: string;
   network: string;
-}
+};
 
 type Transaction = {
   tx_id: string;
   success: boolean;
   explorer_url: string;
-}
+};
 
-const FormFaucet: React.FC<FormFaucetProps> = ({ cryptoCurrency, name, network }) => {
-  const [address, setAddress] = useState('');
-  const [isPending, startTransition] = useTransition()
+const FormFaucet: React.FC<FormFaucetProps> = ({
+  cryptoCurrency,
+  name,
+  network,
+}) => {
+  const [address, setAddress] = useState("");
+  const [isPending, startTransition] = useTransition();
   const [transaction, setTransaction] = useState<Transaction>();
 
   const handleAction = async () => {
@@ -49,10 +54,7 @@ const FormFaucet: React.FC<FormFaucetProps> = ({ cryptoCurrency, name, network }
 
   return (
     <>
-      <form
-        className="grid gap-4 mt-4"
-        onSubmit={onButtonClick}
-      >
+      <form className="grid gap-4 mt-4" onSubmit={onButtonClick}>
         <Input
           value={address}
           variant="bordered"
@@ -66,16 +68,17 @@ const FormFaucet: React.FC<FormFaucetProps> = ({ cryptoCurrency, name, network }
             type="submit"
             isLoading={isPending}
           >
-            Request {
+            Request
+            {
               // cryptoCurrency.claimAmount
               0.001
-            } {cryptoCurrency.currencyCode}
+            }
+            {/* {cryptoCurrency.currencyCode} */}
           </Button>
         </div>
       </form>
       <div className="flex justify-center my-4">
-        {
-          transaction?.success &&
+        {transaction?.success && (
           <Chip
             startContent={<CheckIcon size={30} />}
             variant="flat"
@@ -84,9 +87,7 @@ const FormFaucet: React.FC<FormFaucetProps> = ({ cryptoCurrency, name, network }
               base: "rounded-md h-auto p-2 m-auto w-full",
             }}
           >
-            <p className="text-lg font-bold">
-              Success!
-            </p>
+            <p className="text-lg font-bold">Success!</p>
             <div className="flex flex-col gap-2">
               <p className="max-w-[50vw] break-words">
                 Tx: {transaction?.tx_id}
@@ -104,10 +105,10 @@ const FormFaucet: React.FC<FormFaucetProps> = ({ cryptoCurrency, name, network }
               </Button>
             </div>
           </Chip>
-        }
+        )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default FormFaucet
+export default FormFaucet;
