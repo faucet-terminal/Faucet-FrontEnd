@@ -37,7 +37,6 @@ export const ResetSchema = z.object({
 
 
 export const CryptoCurrencySchema = z.object({
-  id: z.string(),
   name: z.string().min(1, { message: "Name is required" }),
   description: z.string().optional(),
   logoUrl: z.string().url({ message: "Invalid URL format" }),

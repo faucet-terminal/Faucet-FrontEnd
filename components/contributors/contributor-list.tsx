@@ -85,6 +85,14 @@ const contributors = [
     github: "https://github.com/coco723",
     twitter: "https://twitter.com/coco69564520",
   },
+  {
+    id: 11,
+    avatar: "https://avatars.githubusercontent.com/u/37654647",
+    name: "windyund",
+    role: "Developer",
+    github: "https://github.com/windyund",
+    twitter: "",
+  },
 ];
 
 const ContributorsList = () => {

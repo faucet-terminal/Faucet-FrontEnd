@@ -90,7 +90,7 @@ export default function App() {
 
     if (selectedItem && operatorType === OperatorEnum["DELETE"]) {
       startTransition(() => {
-        deleteCryptoById(selectedItem?.id)
+       deleteCryptoById((selectedItem as any)?.id)
           .then((res) => {
             if (res.error) {
               setError(res.error);
@@ -106,7 +106,7 @@ export default function App() {
       });
     } else if (selectedItem && operatorType === OperatorEnum["EDIT"]) {
       startTransition(() => {
-        updateCryptoCurrency(values, selectedItem.id)
+        updateCryptoCurrency(values, (selectedItem as any)?.id)
           .then((res) => {
             if (res.error) {
               setError(res.error);
