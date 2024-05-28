@@ -25,12 +25,14 @@ specifiers:
   '@prisma/client': ^5.14.0
   '@react-aria/ssr': ^3.8.0
   '@react-aria/visually-hidden': ^3.8.6
+  '@types/bcryptjs': ^2.4.6
   '@types/node': ^20
   '@types/react': ^18
   '@types/react-dom': ^18
   '@types/uuid': ^9.0.8
   autoprefixer: ^10.0.1
   axios: ^1.7.2
+  bcryptjs: ^2.4.3
   clsx: ^2.1.0
   eslint: ^8
   eslint-config-next: 14.0.4
@@ -78,6 +80,7 @@ dependencies:
   '@react-aria/ssr': 3.9.4_react@18.3.1
   '@react-aria/visually-hidden': 3.8.12_react@18.3.1
   axios: 1.7.2
+  bcryptjs: 2.4.3
   clsx: 2.1.1
   framer-motion: 10.18.0_nnrd3gsncyragczmpvfhocinkq
   next: 14.0.4_nnrd3gsncyragczmpvfhocinkq
@@ -94,6 +97,7 @@ dependencies:
   zod: 3.23.8
 
 devDependencies:
+  '@types/bcryptjs': 2.4.6
   '@types/node': 20.12.12
   '@types/react': 18.3.3
   '@types/react-dom': 18.3.0
@@ -2107,6 +2111,10 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@types/bcryptjs/2.4.6:
+    resolution: {integrity: sha512-9xlo6R2qDs5uixm0bcIqCeMCE6HiQsIyel9KQySStiyqNl2tnj2mP3DX1Nf56MD6KMenNNlBBsy3LJ7gUEQPXQ==}
+    dev: true
+
   /@types/cookie/0.6.0:
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
     dev: false
@@ -2428,6 +2436,10 @@ packages:
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+
+  /bcryptjs/2.4.3:
+    resolution: {integrity: sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==}
+    dev: false
 
   /binary-extensions/2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
