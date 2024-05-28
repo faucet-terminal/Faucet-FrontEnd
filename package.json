@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -26,7 +26,7 @@
     "@nextui-org/progress": "^2.0.25",
     "@nextui-org/spinner": "^2.0.28",
     "@nextui-org/switch": "^2.0.25",
-    "@nextui-org/system": "^2.0.15",
+    "@nextui-org/system": "^2.2.0",
     "@nextui-org/table": "^2.0.33",
     "@nextui-org/theme": "^2.1.18",
     "@nextui-org/user": "^2.0.28",
