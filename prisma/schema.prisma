@@ -65,20 +65,21 @@ model PasswordResetToken {
 }
 
 model CryptoCurrency {
-  id             String      @id @default(cuid())
-  name           String
-  description    String?
-  logoUrl        String
-  network        String
-  balance        Float?
-  currencyCode   String
-  claimAmount    Float
+  id              String      @id @default(cuid())
+  name            String
+  description     String?
+  logoUrl         String
+  network         String
+  balance         Float?
+  currencyCode    String
+  claimAmount     Float
   // 领取频率（小时）
-  claimFrequency Int
-  balanceAlert   Float
-  userClaim      UserClaim[]
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime?   @updatedAt
+  claimFrequency  Int
+  balanceAlert    Float
+  donationAddress String?
+  userClaim       UserClaim[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime?   @updatedAt
 
   @@unique([name, network])
 }
