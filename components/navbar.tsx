@@ -17,6 +17,7 @@ import NextLink from "next/link";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { siteConfig } from "@/config/site";
 import { usePathname } from "next/navigation";
+import Image from 'next/image';
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -25,8 +26,9 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <FaFaucetDrip size={30} color="#4bc2ee " />
-            <p className="font-bold text-inherit">{siteConfig.name}</p>
+            {/* <FaFaucetDrip size={30} color="#4bc2ee " />
+            <p className="font-bold text-inherit">{siteConfig.name}</p> */}
+            <Image src="/icon.png" alt="Logo" width={50} height={30} />
           </NextLink>
         </NavbarBrand>
         <ul className="hidden md:flex gap-4 justify-start ml-2">
