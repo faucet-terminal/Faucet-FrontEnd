@@ -5,12 +5,13 @@ import { Code } from "@nextui-org/code";
 import { Divider } from "@nextui-org/divider";
 import copy from "copy-to-clipboard";
 import { useState } from "react";
+import { CryptoCurrency } from "@prisma/client";
 
-const CopyBtn = ({ walletAddress }: { walletAddress?: string }) => {
+const CopyBtn = ({ donationAddress }: { donationAddress: string }) => {
   const [copyText, setCopyText] = useState<string>("Copy");
   const handleCopy = () => {
     setCopyText("Copied");
-    walletAddress && copy(walletAddress);
+    donationAddress && copy(donationAddress);
     setTimeout(() => {
       setCopyText("Copy");
     }, 1500);
@@ -23,37 +24,36 @@ const CopyBtn = ({ walletAddress }: { walletAddress?: string }) => {
 };
 
 type TokenDonateProps = {
-  name: string;
+  currencyCode: string;
   network: string;
-  walletAddress?: string;
+  donationAddress: string;
 };
 
 const TokenContribution = ({
-  name,
+  currencyCode,
   network,
-  walletAddress,
+  donationAddress,
 }: TokenDonateProps) => {
   const TextComp = () => {
     return (
       <>
         <span>If you have additional </span>
-        <span className="text-green-400">{name}</span>
+        <span className="text-green-400">{currencyCode}</span>
         <span> on the </span>
         <span className="text-green-400">{network}</span>
         <span>,</span>
       </>
     );
   };
-  const text1 = `If you have additional ${name} on the ${network},`;
-  const text2 = `please donate them to us.`;
-  const address = walletAddress || `0x358a73a163E9c9D130DDcbc97F0C0EF4Dd9a4f13`;
+  const textRest = `please donate them to us.`;
+
   return (
     <>
-      <Card className="m-auto mt-48 w-[600px]">
+      <Card className="m-auto mt-48">
         <CardHeader className="flex gap-3 justify-center">
           <div className="flex flex-col">
             <p className="text-md py-1 text-center textbl">{<TextComp />}</p>
-            <p className="text-md py-1 text-center textbl">{text2}</p>
+            <p className="text-md py-1 text-center textbl">{textRest}</p>
             {/* <p className="text-small text-default-500">nextui.org</p> */}
           </div>
         </CardHeader>
@@ -61,8 +61,8 @@ const TokenContribution = ({
         <CardBody>
           <div className="flex justify-center w-full items-center py-2">
             <Code className="w-full flex justify-between py-1 items-center text-xm">
-              <span className="p-1">{address}</span>
-              <CopyBtn walletAddress={walletAddress} />
+              <span className="p-1">{donationAddress}</span>
+              <CopyBtn donationAddress={donationAddress} />
             </Code>
           </div>
           {/* <p>Make beautiful websites regardless of your design experience.</p> */}

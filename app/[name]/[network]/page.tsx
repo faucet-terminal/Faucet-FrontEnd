@@ -17,7 +17,6 @@ export default async function RequestPage({
     name,
     network,
   });
-
   if (error) return <div>{error}</div>;
   return (
     <>
@@ -47,11 +46,13 @@ export default async function RequestPage({
           name={name}
           network={network}
         />
-        <TokenDonate
-          name={name}
-          network={network}
-          walletAddress={`0xoew7i23l4lskjlruwoeur`}
-        />
+        {!!cryptoCurrency?.donationAddress && (
+          <TokenDonate
+            donationAddress={cryptoCurrency.donationAddress}
+            currencyCode={cryptoCurrency.currencyCode}
+            network={network}
+          />
+        )}
       </div>
     </>
   );
