@@ -80,9 +80,9 @@ const contributors = [
   {
     id: 10,
     avatar: "https://avatars.githubusercontent.com/u/24558814?v=4",
-    name: "coco723",
+    name: "xiangnuan",
     role: "Developer",
-    github: "https://github.com/coco723",
+    github: "https://github.com/xiangnuans",
     twitter: "https://twitter.com/coco69564520",
   },
 ];
