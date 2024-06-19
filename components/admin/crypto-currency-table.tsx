@@ -86,10 +86,9 @@ export default function App() {
   };
 
   const onSubmit = (values: z.infer<typeof CryptoCurrencySchema>) => {
-    console.log("🍷🍷", values, selectedItem);
-
     if (selectedItem && operatorType === OperatorEnum["DELETE"]) {
       startTransition(() => {
+        if (!selectedItem.id) return;
         deleteCryptoById(selectedItem?.id)
           .then((res) => {
             if (res.error) {
@@ -106,6 +105,7 @@ export default function App() {
       });
     } else if (selectedItem && operatorType === OperatorEnum["EDIT"]) {
       startTransition(() => {
+        if (!selectedItem.id) return;
         updateCryptoCurrency(values, selectedItem.id)
           .then((res) => {
             if (res.error) {
