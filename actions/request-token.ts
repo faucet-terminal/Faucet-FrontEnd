@@ -10,15 +10,16 @@ export const requestToken = async (
 ) => {
   try {
     const cryptoCurrency = await findCryptoCurrency({ name, network })
-    console.log(">>>>>>🍷", cryptoCurrency)
     const lowerCaseName = name.toLowerCase() as FaucetPortKeys
     const port = faucetPort[lowerCaseName]
     const prefix = ['aptos',].includes(lowerCaseName) ? '/api' : '';
     const apiPath = `${prefix}/${lowerCaseName}/request`;
-    // const fetchUrl = `${process.env.TOKEN_REQUEST_HOST}:${port}${apiPath}`;
-    const fetchUrl = `${process.env.TOKEN_REQUEST_HOST}/ether/request`;  // 为了对接调试sepolia、Holesky，目前的不统一对接的地址，请求路径不统一
+    let fetchUrl = `${process.env.TOKEN_REQUEST_HOST}:${port}${apiPath}`;
 
-    console.log("..fetchUrl..", fetchUrl, address)
+    // 为了对接调试sepolia、Holesky，目前的不统一对接的地址，请求路径不统一
+    if (name === 'Sepolia' || name === 'Holesky') {
+      fetchUrl = `${process.env.TOKEN_REQUEST_HOST}/ether/request`;
+    }
 
     const response = await axios.post(fetchUrl, {
       address,
