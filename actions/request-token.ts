@@ -30,7 +30,7 @@ export const requestToken = async (
     });
     return response.data
   } catch (error: any) {
-    return { ...error?.response?.data };
+    return { success: false, message: error.message};
   }
 
 

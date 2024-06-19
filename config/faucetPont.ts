@@ -9,6 +9,7 @@ export const faucetPort = {
   "avalanche": 6007,
   "near": 6008,
   "aurora": 6009,
-} as const 
+  "mantle": 7080,
+} as const
 
 export type FaucetPortKeys = keyof typeof faucetPort;

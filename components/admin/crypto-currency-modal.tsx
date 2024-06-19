@@ -39,6 +39,7 @@ const DefaultValus = {
   claimAmount: "",
   claimFrequency: 1,
   balanceAlert: 1,
+  donationAddress: ""
 };
 
 const CryptoCurrencyModal = ({
@@ -345,6 +346,22 @@ const CryptoCurrencyModal = ({
                   );
                 }}
               />
+                <Controller
+                  name="donationAddress"
+                  control={control}
+                  render={({ field, fieldState }) => {
+                    return (
+                      <Input
+                        type="text"
+                        label="Donation Address"
+                        placeholder="please enter a donation address"
+                        color={fieldState.invalid ? "danger" : "default"}
+                        labelPlacement="outside"
+                        {...field}
+                      />
+                    );
+                  }}
+                />
             </ModalBody>
           )}
           <ModalFooter>

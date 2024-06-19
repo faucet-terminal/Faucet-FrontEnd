@@ -5,6 +5,7 @@
  */
 export const publicRoutes = [
   "/",
+  "/contributors",
   "/auth/new-verification"
 ];
 

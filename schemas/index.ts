@@ -47,6 +47,7 @@ export const CryptoCurrencySchema = z.object({
   claimAmount: z.string().min(1, { message: "Claim Amoun is required" }),
   claimFrequency: z.number().int().positive({ message: "Claim Frequency must be a positive integer" }),
   balanceAlert: z.number().positive({ message: "Balance Alert must be a positive number" }),
+  donationAddress: z.string().optional(),
 });
 
 export const RequestTokenSchema = z.object({

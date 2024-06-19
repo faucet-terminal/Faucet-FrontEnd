@@ -75,6 +75,8 @@ export default function App() {
   }, [pagination.current]);
 
   const handleOpenModal = (item: z.infer<typeof CryptoCurrencySchema>) => {
+    setError("");
+    setSuccess("");
     setSelectedItem(item);
     onOpen();
   };
@@ -89,7 +91,7 @@ export default function App() {
     if (selectedItem && operatorType === OperatorEnum["DELETE"]) {
       startTransition(() => {
         if (!selectedItem.id) return;
-        deleteCryptoById(selectedItem?.id)
+        deleteCryptoById((selectedItem as any)?.id)
           .then((res) => {
             if (res.error) {
               setError(res.error);
@@ -106,7 +108,7 @@ export default function App() {
     } else if (selectedItem && operatorType === OperatorEnum["EDIT"]) {
       startTransition(() => {
         if (!selectedItem.id) return;
-        updateCryptoCurrency(values, selectedItem.id)
+        updateCryptoCurrency(values, (selectedItem as any)?.id)
           .then((res) => {
             if (res.error) {
               setError(res.error);
@@ -210,6 +212,10 @@ export default function App() {
         <TableHeader>
           <TableColumn key="name">NAME</TableColumn>
           <TableColumn key="description">Description</TableColumn>
+          <TableColumn key="network">Network</TableColumn>
+          <TableColumn key="currencyCode">Currency Code</TableColumn>
+          <TableColumn key="claimAmount">Claim Amount</TableColumn>
+          <TableColumn key="claimFrequency">Claim Frequency</TableColumn>
           <TableColumn key="actions" align={"center"}>
             ACTIONS
           </TableColumn>
@@ -221,24 +227,32 @@ export default function App() {
                 return columnKey === "actions" ? (
                   <TableCell>
                     <div className="relative flex items-center gap-2">
-                      <span
-                        className="cursor-pointer active:opacity-50"
+                      <Button
+                        isIconOnly
+                        color="primary"
+                        variant="light"
+                        aria-label="Edit"
+                        size="sm"
                         onClick={() => {
                           setOperatorType(OperatorEnum["EDIT"]);
                           handleOpenModal(item);
                         }}
                       >
                         <EditIcon />
-                      </span>
-                      <span
-                        className="text-danger cursor-pointer active:opacity-50"
+                      </Button>
+                      <Button
+                        isIconOnly
+                        color="danger"
+                        variant="light"
+                        aria-label="Delete"
+                        size="sm"
                         onClick={() => {
                           setOperatorType(OperatorEnum["DELETE"]);
                           handleOpenModal(item);
                         }}
                       >
                         <DeleteIcon />
-                      </span>
+                      </Button>
                     </div>
                   </TableCell>
                 ) : (

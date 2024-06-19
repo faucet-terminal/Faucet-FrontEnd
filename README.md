@@ -1,5 +1,5 @@
-This is a the frontend-app repo for the Faucet-ATM.  
- In the first version, we use [Next.js](https://nextjs.org/) as the fullstack framework and [nextui](https://nextui.org/) as our ui.
+This is the frontend-app repo for the Faucet-ATM.  
+ In the first version, we use [Next.js](https://nextjs.org/) as the fullstack framework , [nextui](https://nextui.org/) as our ui, and [Prisma](https://www.prisma.io/) as the ORM.
 
 ## Getting Started
 
@@ -9,11 +9,19 @@ First, git clone this project.
 git clone https://github.com/Faucet-ATM/Faucet-FrontEnd.git //or
 git clone git@github.com:Faucet-ATM/Faucet-FrontEnd.git
 ```
+Copy the `.env.example` file and modify it to `.env`.
+Then, make the necessary configuration changes.
 
 Second, install all dependencies
 
 ```bash
 pnpm install
+```
+
+Then, generate db Type
+
+```bash
+npx prisma generate
 ```
 
 Run the development server:
