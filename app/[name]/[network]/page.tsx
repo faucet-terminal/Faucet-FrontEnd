@@ -23,7 +23,7 @@ export default async function RequestPage({
       <div className="min-h-full w-full max-w-[768px] mx-auto">
         <div className="flex flex-col gap-1 align-center m-auto text-center">
           <Image
-            alt={cryptoCurrency?.name}
+            alt={cryptoCurrency && (cryptoCurrency.id === "clywzp2em0001iz6dgkahnzc9" ? "Monad":cryptoCurrency.name)}
             height={80}
             width={80}
             radius="full"
@@ -33,10 +33,10 @@ export default async function RequestPage({
               img: "w-full h-full",
             }}
           />
-          <p className="text-4xl font-bold">{cryptoCurrency?.name}</p>
+          <p className="text-4xl font-bold">{cryptoCurrency && (cryptoCurrency.id === "clywzp2em0001iz6dgkahnzc9" ? "MON":cryptoCurrency.name)}</p>
           <p className="text-small text-default-500">
             {cryptoCurrency?.description}
-          </p>
+          </p>  
           <p className="text-small text-default-400">
             {cryptoCurrency?.network}
           </p>
