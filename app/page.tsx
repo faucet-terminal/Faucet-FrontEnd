@@ -14,14 +14,14 @@ export default async function Home() {
             <Card className="max-w-[400px]" isHoverable>
               <CardHeader className="flex gap-3 align-top">
                 <Image
-                  alt={item.name}
+                  alt={item.id === "clywzp2em0001iz6dgkahnzc9" ? "MON": item.name}
                   height={40}
                   width={40}
                   radius="full"
                   src={item.logoUrl}
                 />
                 <div className="flex flex-col">
-                  <p className="text-2xl font-bold">{item.name}</p>
+                  <p className="text-2xl font-bold">{item.id === "clywzp2em0001iz6dgkahnzc9" ? "MON": item.name}</p>
                   <p className="text-small text-default-500">
                     {item.description}
                   </p>
