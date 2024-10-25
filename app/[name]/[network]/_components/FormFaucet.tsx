@@ -70,8 +70,8 @@ const FormFaucet: React.FC<FormFaucetProps> = ({
           >
             Request{" "}
             {
-              // cryptoCurrency.claimAmount
-              0.001
+              cryptoCurrency.claimAmount
+    
             }{" "}
             {cryptoCurrency.currencyCode}
           </Button>
